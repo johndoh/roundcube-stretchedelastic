@@ -14,7 +14,6 @@ or the [releases section][releases] of the GitHub repository.
 
 License
 -------
-
 The contents of this folder are subject to the Creative Commons
 Attribution-ShareAlike License. It is allowed to copy, distribute,
 transmit and to adapt the work by keeping credits to the original
