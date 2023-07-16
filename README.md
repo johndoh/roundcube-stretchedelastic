@@ -4,17 +4,8 @@ This skin extends the Elastic skin shipped with Roundcube to add support for
 Desktop and List display modes on the mail screen along with a few other
 minor tweaks. This skin is not a standalone package.
 
-ATTENTION
----------
-This is just a snapshot from the GIT repository and is **NOT A STABLE version
-of Stretched Elastic**. It is Intended for use with the **GIT-master** version
-of Roundcube and it may not be compatible with older versions. Stable versions
-of Stretched Elastic are available from the [Roundcube plugin repository][rcplugrepo]
-or the [releases section][releases] of the GitHub repository.
-
 License
 -------
-
 The contents of this folder are subject to the Creative Commons
 Attribution-ShareAlike License. It is allowed to copy, distribute,
 transmit and to adapt the work by keeping credits to the original
