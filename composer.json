@@ -3,7 +3,7 @@
   "description": "Extends the Elasitc skin to add support for desktop and list mail view layouts",
   "keywords": ["list","layout"],
   "homepage": "https://github.com/johndoh/roundcube-stretchedelastic/",
-  "license": "GPL-3.0-or-later",
+  "license": "CC-BY-SA-3.0",
   "type": "roundcube-skin",
   "version": "0.1",
   "authors": [
