@@ -28,6 +28,7 @@ function rcube_streched_elastic_ui()
 
     this.toggle_list_selection = toggle_list_selection;
     this.get_list_layout = get_list_layout;
+    this.list_actions_position = list_actions_position;
 
     setup();
 
@@ -41,7 +42,8 @@ function rcube_streched_elastic_ui()
         rcmail
             .addEventListener('layout-change', mail_layout)
             .addEventListener('skin-resize', resize)
-            .addEventListener('menu-open', menu_open);
+            .addEventListener('menu-open', menu_open)
+            .addEventListener('list-actions-show', list_actions_show);
 
         $('.column-resizer').on('mousemove', function() {
             if ($('.messagelist').hasClass('layout-list')) {
@@ -310,12 +312,35 @@ function rcube_streched_elastic_ui()
             rcmail.set_cookie(key, val, exp);
         }
     };
+
+    function list_actions_position(p) {
+        if (!UI.is_touch() && ($.inArray('listactions', rcmail.env.listcols) == -1 || UI_stretched.get_list_layout() == 'widescreen')) {
+            var top = p.element.offset().top - p.element.parent().offset().top + $('#messagelist-fixedcopy').height();
+
+            if (UI_stretched.get_list_layout() == 'widescreen') {
+                top += (p.element.height() - p.menu.outerHeight()) / 2
+            }
+
+            return {top: top + 'px'};
+        }
+        else {
+            return false;
+        }
+    };
+
+    function list_actions_show(p) {
+        if (UI_stretched.get_list_layout() != 'widescreen') {
+            p.menu.find('span.date')[$.inArray('date', rcmail.env.listcols) >= 0 ? 'hide' : 'show']();
+            p.menu.find('span.size')[$.inArray('size', rcmail.env.listcols) >= 0 ? 'hide' : 'show']();
+        }
+    }
 }
 
 var UI_stretched = new rcube_streched_elastic_ui();
 
 // Override default Elastic list UI functions
 UI.toggle_list_selection = UI_stretched.toggle_list_selection;
+UI.list_actions_position = UI_stretched.list_actions_position;
 
 // Inject the layout option into the list options dialog save function
 rcmail.set_list_options_core = rcmail.set_list_options;

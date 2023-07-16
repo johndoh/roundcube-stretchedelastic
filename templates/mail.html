@@ -105,6 +105,7 @@
             :optionsmenuicon="!in_array('list_cols', (array)config:dont_override)" optionsmenuref="messagelistcolsmenu" optionsmenulabel="columnoptions" optionsmenuid="colmenulink"
 			aria-labelledby="aria-label-messagelist" data-list="message_list" data-label-msg="listempty"
 		/>
+		<roundcube:object name="messagelistactions" class="menu listing-hover-menu stertched-elastic" />
 	</div>
 	<roundcube:include file="includes/pagenav.html" />
 </div>
@@ -253,6 +254,7 @@
 				<li><label><input type="checkbox" name="list_col[]" value="attachment" /> <span><roundcube:label name="attachment" /></span></label></li>
 				<li><label><input type="checkbox" name="list_col[]" value="flag" /> <span><roundcube:label name="flag" /></span></label></li>
 				<li><label><input type="checkbox" name="list_col[]" value="priority" /> <span><roundcube:label name="priority" /></span></label></li>
+				<li><label><input type="checkbox" name="list_col[]" value="listactions" /> <span><roundcube:label name="messagelistactions" /></span></label></li>
 			</ul>
 		</div>
 		<roundcube:container name="coloptions" id="coloptionsmenu" />

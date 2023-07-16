@@ -89,7 +89,8 @@ table.fixedcopy {
         &.flag,
         &.attachment,
         &.status,
-        &.priority {
+        &.priority,
+        &.listactions {
             text-indent: -999px;
             white-space: nowrap;
             overflow: hidden;
@@ -271,6 +272,88 @@ table.fixedcopy {
         }
     }
 
+    td.listactions {
+        text-overflow: unset;
+
+        > span {
+            white-space: nowrap;
+        }
+
+        span.date,
+        span.size {
+            display: none;
+        }
+
+        a {
+            visibility: hidden;
+
+            &:hover {
+                text-decoration: none;
+            }
+
+            &:before {
+                &:extend(.font-icon-class);
+                text-indent: 0;
+                float: none;
+                color: @color-list-icon;
+                height: auto;
+                display: inline;
+            }
+
+            &.read:before {
+                .font-icon-regular(@fa-var-envelope-open);
+            }
+
+            &.unread:before {
+                .font-icon-solid(@fa-var-envelope);
+            }
+
+            &.flag:before {
+                .font-icon-solid(@fa-var-flag);
+            }
+
+            &.unflag:before {
+                .font-icon-regular(@fa-var-flag);
+            }
+
+            &.delete:before {
+                content: @fa-var-trash;
+            }
+
+            &.undelete {
+                display: none;
+
+                &:before {
+                  content: @fa-var-redo;
+                }
+            }
+
+            &.reply:before {
+                content: @fa-var-reply;
+            }
+
+            &.reply-all:before {
+                content: @fa-var-reply-all;
+            }
+
+            &.forward:before {
+                content: @fa-var-share;
+            }
+
+            &.archive:before {
+                content: @fa-var-archive;
+            }
+
+            &.junk:before {
+                content: @fa-var-fire-alt;
+            }
+
+            &.notjunk:before {
+                content: @fa-var-inbox;
+            }
+        }
+    }
+
     tr:not(.deleted):hover {
         span.attachment {
             display: block !important;
@@ -283,6 +366,46 @@ table.fixedcopy {
                 cursor: pointer;
             }
         }
+
+        td.listactions {
+            a.read,
+            a.unread,
+            a.flag,
+            a.unflag,
+            a.delete,
+            a.reply,
+            a.reply-all,
+            a.forward,
+            a.archive,
+            a.junk,
+            a.notjunk {
+                visibility: visible;
+            }
+        }
+    }
+
+    tr.unread {
+        td.listactions a.unread {
+            display: none;
+        }
+    }
+
+    tr:not(.unread) {
+        td.listactions a.read {
+            display: none;
+        }
+    }
+
+    tr.flagged {
+        td.listactions a.flag {
+            display: none;
+        }
+    }
+
+    tr:not(.flagged) {
+        td.listactions a.unflag {
+            display: none;
+        }
     }
 
     tr.deleted:hover {
@@ -292,6 +415,17 @@ table.fixedcopy {
 
         td.status > span.deleted:before {
             cursor: pointer;
+        }
+
+        td.listactions {
+            a.delete {
+                display: none;
+            }
+
+            a.undelete {
+                display: inline-block;
+                visibility: visible;
+            }
         }
     }
 
