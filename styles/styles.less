@@ -1,0 +1,18 @@
+/**
+ * Stretched Elastic skin styles
+ */
+
+@import (reference) "../../elastic/styles/colors";
+@import (reference) "colors";
+@import (reference) "../../elastic/styles/variables";
+@import (reference, optional) "_variables";
+@import (reference) "../../elastic/styles/mixins";
+
+@import "layout";
+@import "lists";
+
+& when (@dark-mode-enabled = true) {
+    @import "dark";
+}
+
+@import (optional) "_styles";

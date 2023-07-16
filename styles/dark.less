@@ -1,0 +1,67 @@
+/**
+ * Stretched Elastic dark styles
+ */
+
+html.dark-mode {
+    #layout.layout-desktop #layout-list {
+        .iframe-wrapper {
+            border-top-color: @color-dark-border;
+        }
+    }
+
+    .listing {
+        > thead {
+            background-color: @color-dark-list-header-background;
+        }
+
+        thead th {
+            border-bottom-color: @color-dark-border;
+        }
+
+        thead th {
+            color: @color-dark-list-header;
+
+            a {
+                color: @color-dark-list-header;
+            }
+
+            &.sortedDESC,
+            &.sortedASC, {
+                > a:after {
+                    color: @color-dark-list-header-icon;
+                }
+            }
+        }
+    }
+
+    .messagelist.layout-list {
+        th {
+            &.flag,
+            &.attachment {
+                span:before {
+                    color: @color-dark-list-header !important;
+                }
+            }
+        }
+
+        tr.deleted td,
+        tr.deleted td.subject > a,
+        tr.deleted td.subject span.subject a,
+        tr.deleted td.subject span.date,
+        tr.deleted td.subject span.fromto,
+        tr.deleted td.flags span span {
+            color: @color-dark-list-deleted !important;
+        }
+
+        td.priority span,
+        span.priority {
+            &.prio3:before {
+                color: @color-dark-list-priority-3;
+            }
+        }
+
+        tr.thread.expanded {
+            background-color: @color-dark-list-thread-background;
+        }
+    }
+}
