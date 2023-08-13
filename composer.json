@@ -1,6 +1,6 @@
 {
   "name": "johndoh/stretchedelastic",
-  "description": "Extends the Elasitc skin to add support for desktop and list mail view layouts",
+  "description": "Extends the Elasitc skin to add support for desktop and list mail view layouts",
   "keywords": ["list","layout"],
   "homepage": "https://github.com/johndoh/roundcube-stretchedelastic/",
   "license": "CC-BY-SA-3.0",
@@ -19,7 +19,8 @@
   },
   "extra": {
     "roundcube": {
-      "min-version": "1.6"
+      "min-version": "1.6",
+      "persistent-files": ["styles/_styles.less", "styles/_variables.less"]
     }
   }
 }
