@@ -33,23 +33,25 @@ function rcube_streched_elastic_ui()
 
     function setup()
     {
-        if (rcmail.is_framed() && $('.formcontent').length > 0) {
-            // Set the scrollable parent object for the table's fixed header
-            rcube_list_widget.prototype.container = 'div.formcontent';
-        }
-
-        rcmail
-            .addEventListener('layout-change', mail_layout)
-            .addEventListener('skin-resize', resize)
-            .addEventListener('menu-open', menu_open);
-
-        $('.column-resizer').on('mousemove', function() {
-            if ($('.messagelist').hasClass('layout-list')) {
-                rcmail.message_list.resize();
+        if (rcmail.env.task == 'mail' && rcmail.env.action == '') {
+            if (rcmail.is_framed() && $('.formcontent').length > 0) {
+                // Set the scrollable parent object for the table's fixed header
+                rcube_list_widget.prototype.container = 'div.formcontent';
             }
 
-            mail_layout();
-        });
+            rcmail
+                .addEventListener('layout-change', mail_layout)
+                .addEventListener('skin-resize', resize)
+                .addEventListener('menu-open', menu_open);
+
+            $('.column-resizer').on('mousemove', function() {
+                if ($('.messagelist').hasClass('layout-list')) {
+                    rcmail.message_list.resize();
+                }
+
+                mail_layout();
+            });
+        }
     };
 
     function toggle_list_selection(obj, list_id)
@@ -63,9 +65,6 @@ function rcube_streched_elastic_ui()
 
     function mail_layout(p)
     {
-        if (rcmail.env.task != 'mail' || rcmail.env.action != '')
-            return;
-
         var cur_layout = p ? p.new_layout : rcmail.env.layout,
             list_header = layout.list.find('.header'),
             content_header = layout.content.find('.header'),
