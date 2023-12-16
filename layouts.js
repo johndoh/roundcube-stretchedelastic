@@ -115,6 +115,7 @@ function rcube_streched_elastic_ui()
 
         if (!$('.messagelist').hasClass('layout-' + current_layout)) {
             $('.messagelist').removeClass('layout-widescreen layout-list').addClass('layout-' + current_layout);
+            $('#messagelist-content').removeClass('layout-widescreen layout-list').addClass('layout-' + current_layout);
 
             if (p) {
                 // the user has changed layout mode, redraw the UI
