@@ -42,6 +42,7 @@ function rcube_streched_elastic_ui()
             rcmail
                 .addEventListener('layout-change', mail_layout)
                 .addEventListener('skin-resize', resize)
+                .addEventListener('skin-message-list-hover-menu', message_list_hover_menu)
                 .addEventListener('menu-open', menu_open);
 
             $('.column-resizer').on('mousemove', function() {
@@ -128,6 +129,15 @@ function rcube_streched_elastic_ui()
             }
         }
     };
+
+    function message_list_hover_menu(p) {
+        if (UI_stretched.get_list_layout() != 'widescreen') {
+            var element = $(p.record),
+                top = element.offset().top - element.parent().offset().top + $('#messagelist-fixedcopy').height();
+
+            p.menu.css({ top: top + 'px' });
+        }
+    }
 
     function get_list_layout(cur_layout = rcmail.env.layout)
     {
