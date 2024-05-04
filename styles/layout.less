@@ -19,8 +19,14 @@
         }
 
         html.layout-large & {
+            & > .header > #toolbar-list-menu {
+                margin-left: 5%;
+            }
+
             & > .header > #toolbar-menu {
-                margin-left: 2.5em;
+                border-left: 1px solid @color-layout-border;
+                margin-left: 5%;
+                flex-grow: 1;
             }
 
             & > .footer {
