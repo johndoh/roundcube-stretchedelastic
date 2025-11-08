@@ -28,6 +28,7 @@ function rcube_streched_elastic_ui()
 
     this.toggle_list_selection = toggle_list_selection;
     this.get_list_layout = get_list_layout;
+    this.set_pref = set_pref;
 
     setup();
 
@@ -75,6 +76,7 @@ function rcube_streched_elastic_ui()
                 rcmail.env.contentframe = cur_layout == 'list' ? null : 'messagecontframe';
                 $('#layout-list > .iframe-wrapper').appendTo('#layout-content');
                 $('.iframe-wrapper > .column-resizer').remove();
+                $('#layout-list > div.searchbar').show();
             };
 
         if (cur_layout == 'desktop' || cur_layout == 'list') {
@@ -85,6 +87,7 @@ function rcube_streched_elastic_ui()
         if (mode == 'phone' || mode == 'small') {
             // on small screens the layout is always widescreen
             cur_layout = 'widescreen';
+            //$('#layout-list > div.searchbar').show();
         }
         else if (cur_layout == 'desktop' && $(window).height() < 600) {
             // do not use desktop layout on short screens
@@ -98,6 +101,19 @@ function rcube_streched_elastic_ui()
             if (!$('#layout').hasClass('layout-' + cur_layout)) {
                 reset_layout();
                 content_header.children().attr('data-source', 'content-header').appendTo(list_header);
+                $('#layout-list > div.searchbar')[get_pref('show-search-bar') ? 'show' : 'hide']();
+
+                var search_button = $('<a>')
+                    .addClass('search active')
+                    .attr('title', rcmail.gettext('search'))
+                    .attr('tabindex', 0)
+                    .append($('<span>').addClass('inner').text(rcmail.gettext('search')))
+                    .on('click', function () {
+                        $('#layout-list > div.searchbar').toggle();
+                        UI_stretched.set_pref('show-search-bar', $('#layout-list > div.searchbar').is(':visible'));
+                    });
+                var li = $('<li>').attr('role', 'menuitem').append(search_button);
+                $('#toolbar-list-menu').prepend(li);
 
                 if (cur_layout == 'desktop') {
                     $('#layout-content > .iframe-wrapper').appendTo('#layout-list');
@@ -105,6 +121,7 @@ function rcube_streched_elastic_ui()
                 }
 
                 $('#layout').removeClass().addClass('layout-' + cur_layout);
+                $('#toolbar-menu').removeClass('popupmenu');
             }
         }
         else if (list_header.find("[data-source='content-header']").length > 0) {
@@ -166,8 +183,9 @@ function rcube_streched_elastic_ui()
 
         $('.header > ul.menu', layout.list).filter("[data-source='content-header']").removeClass('popupmenu');
 
-        if (rcmail.env.layout == 'desktop' || rcmail.env.layout == 'list')
+        if (rcmail.env.layout == 'desktop' || rcmail.env.layout == 'list') {
             layout.sidebar[!UI.is_mobile() ? 'removeClass' : 'addClass']('hidden');
+        }
     }
 
     /**
@@ -271,7 +289,7 @@ function rcube_streched_elastic_ui()
                         splitter.removeClass('active');
 
                         // Save the current position (width)
-                        save_pref(key, node.height());
+                        set_pref(key, node.height());
                     });
             });
 
@@ -308,7 +326,7 @@ function rcube_streched_elastic_ui()
     /**
      * Saves preference value to browser storage
      */
-    function save_pref(key, val)
+    function set_pref(key, val)
     {
         prefs[key] = val;
 
