@@ -87,7 +87,6 @@ function rcube_streched_elastic_ui()
         if (mode == 'phone' || mode == 'small') {
             // on small screens the layout is always widescreen
             cur_layout = 'widescreen';
-            //$('#layout-list > div.searchbar').show();
         }
         else if (cur_layout == 'desktop' && $(window).height() < 600) {
             // do not use desktop layout on short screens
@@ -364,6 +363,11 @@ rcmail.add_message_row = function(uid, cols, flags, attop)
         // short delay prevents headers from flickering
         $('#messagelist-fixedcopy').data('header-hidden', false);
         setTimeout(function() { $('#messagelist-fixedcopy').show(); }, 200);
+
+        // prevent Elastic hover menu event
+        $('table.messagelist').on('mouseenter', 'thead > tr', function(e) {
+            e.stopPropagation();
+        });
     }
 };
 
