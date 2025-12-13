@@ -15,16 +15,16 @@
  * for the JavaScript code in this file.
  */
 
-"use strict";
+'use strict';
 
 function rcube_streched_elastic_ui()
 {
     var prefs, layout = {
-            menu: $('#layout-menu'),
-            sidebar: $('#layout-sidebar'),
-            list: $('#layout-list'),
-            content: $('#layout-content'),
-        };
+        menu: $('#layout-menu'),
+        sidebar: $('#layout-sidebar'),
+        list: $('#layout-list'),
+        content: $('#layout-content'),
+    };
 
     this.toggle_list_selection = toggle_list_selection;
     this.get_list_layout = get_list_layout;
@@ -46,7 +46,7 @@ function rcube_streched_elastic_ui()
                 .addEventListener('skin-message-list-hover-menu', message_list_hover_menu)
                 .addEventListener('menu-open', menu_open);
 
-            $('.column-resizer').on('mousemove', function() {
+            $('.column-resizer').on('mousemove', function () {
                 if ($('.messagelist').hasClass('layout-list')) {
                     rcmail.message_list.resize();
                 }
@@ -54,7 +54,7 @@ function rcube_streched_elastic_ui()
                 mail_layout();
             });
         }
-    };
+    }
 
     function toggle_list_selection(obj, list_id)
     {
@@ -63,7 +63,7 @@ function rcube_streched_elastic_ui()
             var list = $('#' + list_id).data('list');
             rcmail[list].resize();
         }
-    };
+    }
 
     function mail_layout(p)
     {
@@ -72,7 +72,7 @@ function rcube_streched_elastic_ui()
             content_header = layout.content.find('.header'),
             current_layout = get_list_layout(cur_layout),
             mode = UI.get_screen_mode(),
-            reset_layout = function() {
+            reset_layout = function () {
                 rcmail.env.contentframe = cur_layout == 'list' ? null : 'messagecontframe';
                 $('#layout-list > .iframe-wrapper').appendTo('#layout-content');
                 $('.iframe-wrapper > .column-resizer').remove();
@@ -144,7 +144,7 @@ function rcube_streched_elastic_ui()
                 rcmail.command('list');
             }
         }
-    };
+    }
 
     function message_list_hover_menu(p) {
         if (UI_stretched.get_list_layout() != 'widescreen') {
@@ -174,7 +174,7 @@ function rcube_streched_elastic_ui()
         }
 
         return list_layout;
-    };
+    }
 
     function resize(p)
     {
@@ -198,7 +198,7 @@ function rcube_streched_elastic_ui()
         else if (p.name == 'messagelistcolsmenu') {
             menu_collist(p);
         }
-    };
+    }
 
     /**
      * Messages list columns options dialog
@@ -209,21 +209,21 @@ function rcube_streched_elastic_ui()
             dialog = content.clone(true);
 
         // set form values
-        $.each(rcmail.env.listcols, function() {
+        $.each(rcmail.env.listcols, function () {
             $('input[name="list_col[]"][value="' + this + '"]', dialog).prop('checked', true);
         });
 
         // Fix id/for attributes
-        $('input', dialog).each(function() { this.id = this.id + '-clone'; });
-        $('label', dialog).each(function() { $(this).attr('for', $(this).attr('for') + '-clone'); });
+        $('input', dialog).each(function () { this.id = this.id + '-clone'; });
+        $('label', dialog).each(function () { $(this).attr('for', $(this).attr('for') + '-clone'); });
 
-        var save_func = function(e) {
+        var save_func = function (e) {
             if (rcube_event.is_keyboard(e.originalEvent)) {
                 $('#colmenulink').focus();
             }
 
             var cols = [];
-            $.each($('input[name="list_col[]"]', dialog), function() {
+            $.each($('input[name="list_col[]"]', dialog), function () {
                 if ($(this).is(':checked')) {
                     cols.push($(this).val());
                 }
@@ -235,9 +235,9 @@ function rcube_streched_elastic_ui()
 
         dialog = rcmail.simple_dialog(dialog, rcmail.gettext('columnoptionstitle'), save_func, {
             closeOnEscape: true,
-            minWidth: 400
+            minWidth: 400,
         });
-    };
+    }
 
     /**
      * Create a splitter (resizing) element in desktop layout
@@ -247,13 +247,13 @@ function rcube_streched_elastic_ui()
         var node = $('#layout-list > .iframe-wrapper'),
             key = 'mail.messagecontframe',
             height = get_pref(key),
-            set_height = function(height) {
+            set_height = function (height) {
                 node.css('height', Math.max(300, height));
             };
 
         $('<div class="column-resizer">')
             .appendTo(node)
-            .on('mousedown', function(e) {
+            .on('mousedown', function (e) {
                 var ts, splitter = $(this), offset = node.position().top;
 
                 // Makes col-resize cursor follow the mouse pointer on dragging
@@ -266,19 +266,19 @@ function rcube_streched_elastic_ui()
 
                 // Start listening to mousemove events
                 $(document)
-                    .on('mousemove.resizer', function(e) {
+                    .on('mousemove.resizer', function (e) {
                         // Use of timeouts makes the move more smooth in Chrome
                         clearTimeout(ts);
-                        ts = setTimeout(function() {
+                        ts = setTimeout(function () {
                             offset = node.position().top;
 
                             var cursor_position = rcube_event.get_mouse_pos(e).y,
-                                height = node.height() + (offset - cursor_position)
+                                height = node.height() + (offset - cursor_position);
 
                             set_height(height);
                         }, 5);
                     })
-                    .on('mouseup.resizer', function() {
+                    .on('mouseup.resizer', function () {
                         // Remove registered events
                         $(document).off('.resizer');
                         $('iframe').off('.resizer');
@@ -295,7 +295,7 @@ function rcube_streched_elastic_ui()
         if (height) {
             set_height(height);
         }
-    };
+    }
 
     /**
      * Get preference stored in browser
@@ -314,13 +314,13 @@ function rcube_streched_elastic_ui()
 
                 // copy value to local storage and remove cookie (if localStorage is supported)
                 if (rcmail.local_storage_set_item('prefs.elastic', prefs)) {
-                    rcmail.set_cookie(key, cookie, new Date());  // expire cookie
+                    rcmail.set_cookie(key, cookie, new Date()); // expire cookie
                 }
             }
         }
 
         return prefs[key];
-    };
+    }
 
     /**
      * Saves preference value to browser storage
@@ -336,7 +336,7 @@ function rcube_streched_elastic_ui()
             exp.setYear(exp.getFullYear() + 1);
             rcmail.set_cookie(key, val, exp);
         }
-    };
+    }
 }
 
 var UI_stretched = new rcube_streched_elastic_ui();
@@ -346,7 +346,7 @@ UI.toggle_list_selection = UI_stretched.toggle_list_selection;
 
 // Inject the layout option into the list options dialog save function
 rcmail.set_list_options_core = rcmail.set_list_options;
-rcmail.set_list_options = function(cols, sort_col, sort_order, threads, layout)
+rcmail.set_list_options = function (cols, sort_col, sort_order, threads, layout)
 {
     var layout = $('select[name="layout"]:visible').val();
     rcmail.set_list_options_core(cols, sort_col, sort_order, threads, layout);
@@ -354,7 +354,7 @@ rcmail.set_list_options = function(cols, sort_col, sort_order, threads, layout)
 
 // Inject the layout option into the add_message_row function
 rcmail.add_message_row_core = rcmail.add_message_row;
-rcmail.add_message_row = function(uid, cols, flags, attop)
+rcmail.add_message_row = function (uid, cols, flags, attop)
 {
     rcmail.add_message_row_core(uid, cols, flags, attop);
 
@@ -362,16 +362,16 @@ rcmail.add_message_row = function(uid, cols, flags, attop)
         // once the message list has loaded add the fixed header
         // short delay prevents headers from flickering
         $('#messagelist-fixedcopy').data('header-hidden', false);
-        setTimeout(function() { $('#messagelist-fixedcopy').show(); }, 200);
+        setTimeout(function () { $('#messagelist-fixedcopy').show(); }, 200);
 
         // prevent Elastic hover menu event
-        $('table.messagelist').on('mouseenter', 'thead > tr', function(e) {
+        $('table.messagelist').on('mouseenter', 'thead > tr', function (e) {
             e.stopPropagation();
         });
     }
 };
 
 // Override list layout for list headers
-rcmail.addEventListener('msglist_layout', function(p) {
+rcmail.addEventListener('msglist_layout', function (p) {
     return UI_stretched.get_list_layout();
 });
