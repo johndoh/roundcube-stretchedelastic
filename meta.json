@@ -5,7 +5,7 @@
     "license": "Creative Commons Attribution-ShareAlike",
     "license-url": "http://creativecommons.org/licenses/by-sa/3.0/",
     "localization": true,
-	"config": {
-		"supported_layouts": ["widescreen","list","desktop"]
-	}
+    "config": {
+        "supported_layouts": ["widescreen","list","desktop"]
+    }
 }
