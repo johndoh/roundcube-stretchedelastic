@@ -21,10 +21,12 @@ authors in the README.md file. See [CC BY-SA 3.0][ccv3] for details.
 
 Install
 -------
+* Install via Composer by adding `johndoh/contextmenu` to your `composer.json` file or running `composer require johndoh/contextmenu`
+<br/>or
 * Place this skin folder into skins directory of Roundcube
-* To set this is the default skin set $config['skin'] to stretchedelastic
+* To set this is the default skin set `$config['skin']` to `stretchedelastic`
 * To hide the original Elastic skin on the Roundcube settings screen use the
-$config['skins_allowed'] option
+`$config['skins_allowed']` option
 
 **NB:** When downloading the plugin from GitHub you will need to create a
 directory called stretchedelastic and place the files in there, ignoring the
@@ -33,18 +35,18 @@ root directory in the downloaded archive.
 All styles are written using LESS syntax. The skins is distributed with
 precompiled CSS but should you wish to customise it then recompliation can be
 done using the lessc (>= 2.5.2) command line tool. This comes with the
-nodejs-less RPM package or using npm install less which depend on nodejs.
+`nodejs-less` RPM package or using `npm install less` which depend on nodejs.
 
     $ lessc --clean-css="--s1 --advanced" --include-path=../elastic/styles styles/styles.less > styles/styles.min.css
 
-(--clean-css="--s1 --advanced" minifies the css, requires the clean-css Less
-plugin. The plugin can be installed using npm install less-plugin-clean-css)
+(`--clean-css="--s1 --advanced"` minifies the css, requires the clean-css Less
+plugin. The plugin can be installed using `npm install less-plugin-clean-css`)
 
 References to image files from the included CSS files can be appended with
 cache-buster marks to avoid browser caching issues after updating.
 
-Run bin/updatecss.sh --dir skins/stretchedelastic before packaging the skin or
-after installing it on the destination system.
+Run `bin/updatecss.sh --dir skins/stretchedelastic` before packaging the skin
+or after installing it on the destination system.
 
 For Developers
 --------------
