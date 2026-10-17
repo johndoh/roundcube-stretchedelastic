@@ -9,8 +9,8 @@ ATTENTION
 This is just a snapshot from the GIT repository and is **NOT A STABLE version
 of Stretched Elastic**. It is Intended for use with the **GIT-master** version
 of Roundcube and it may not be compatible with older versions. Stable versions
-of Stretched Elastic are available from the [Roundcube plugin repository][rcplugrepo]
-or the [releases section][releases] of the GitHub repository.
+of Stretched Elastic are available from [Packagist][rcplugrepo] or the
+[releases section][releases] of the GitHub repository.
 
 License
 -------
@@ -54,6 +54,6 @@ For Developers
   via _styles.less and _variables.less files. Where you can overwrite all
   variables and add custom styles.
 
-[rcplugrepo]: https://plugins.roundcube.net/#/packages/johndoh/stretchedelastic
+[rcplugrepo]: https://packagist.org/packages/johndoh/stretchedelastic
 [releases]: https://github.com/johndoh/roundcube-stretchedelastic/releases
 [ccv3]: https://creativecommons.org/licenses/by-sa/3.0/
