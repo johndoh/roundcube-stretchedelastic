@@ -1,5 +1,7 @@
 # Roundcube Webmail StretchedElastic
 
+- Restore message icons in list mode (#6)
+
 ## Version 0.2 (2025-12-20, rc-1.6)
 
 - Update after rc 2cf6b35 (support list hover menu added in rc 1.7)
