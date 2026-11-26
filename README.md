@@ -21,7 +21,7 @@ authors in the README.md file. See [CC BY-SA 3.0][ccv3] for details.
 
 Install
 -------
-* Install via Composer by adding `johndoh/contextmenu` to your `composer.json` file or running `composer require johndoh/contextmenu`
+* Install via Composer by adding `johndoh/stretchedelastic` to your `composer.json` file or running `composer require johndoh/stretchedelastic`
 <br/>or
 * Place this skin folder into skins directory of Roundcube
 * To set this is the default skin set `$config['skin']` to `stretchedelastic`
